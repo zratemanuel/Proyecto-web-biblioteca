@@ -1,10 +1,13 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Mi aplicación ASP.NET</title>
+    <title>@ViewBag.Title </title>
+    <link rel="icon"
+          type="image/png"
+          href="https://image.flaticon.com/icons/png/512/8/8133.png">
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
@@ -17,14 +20,35 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Nombre de la aplicación", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Sistema de Biblioteca", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Inicio", "Index", "Home")</li>
-                    <li>@Html.ActionLink("Acerca de", "About", "Home")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Libros</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Registrar Libro", "CreateBook", "Book")</li>
+                            <li>@Html.ActionLink("Modificar Libro", "UpdateBook", "Book")</li>
+                            <li>@Html.ActionLink("Eliminar Libro", "DeleteBook", "Book")</li>
+                            <li>@Html.ActionLink("Consultar Libro", "ReadBook", "Book")</li>
+                        </ul>
+                    </li>
+
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true"> <span class="nav-label">Autores</span> <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li>@Html.ActionLink("Registrar Autor", "CreateAuthor", "Author")</li>
+                            <li>@Html.ActionLink("Modificar Autor", "UpdateAuthor", "Author")</li>
+                            <li>@Html.ActionLink("Eliminar Autor", "DeleteAuthor", "Author")</li>
+                            <li>@Html.ActionLink("Consultar Autor", "ReadAuthor", "Author")</li>
+                        </ul>
+                    </li>
+
                     <li>@Html.ActionLink("Contacto", "Contact", "Home")</li>
                 </ul>
+
+               
             </div>
         </div>
     </div>
@@ -32,7 +56,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - Mi aplicación ASP.NET</p>
+            <p>&copy; @DateTime.Now.Year - Sistema de Biblioteca</p>
         </footer>
     </div>
 

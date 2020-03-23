@@ -1,0 +1,457 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="bibliotecadbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="T_AUTOR">
+          <Key>
+            <PropertyRef Name="idAutor" />
+          </Key>
+          <Property Name="idAutor" Type="int" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="nacionalidad" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="date" Nullable="false" />
+          <Property Name="descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="T_COPIA">
+          <Key>
+            <PropertyRef Name="idCopia" />
+          </Key>
+          <Property Name="idCopia" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estado" Type="int" Nullable="false" />
+          <Property Name="prestamo" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_ESTADO">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="estadoCopia" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_LECTOR">
+          <Key>
+            <PropertyRef Name="idLector" />
+          </Key>
+          <Property Name="idLector" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="telefono" Type="numeric" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="direccion" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_LIBRO">
+          <Key>
+            <PropertyRef Name="id_libro" />
+          </Key>
+          <Property Name="id_libro" Type="int" Nullable="false" />
+          <Property Name="titulo" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="tipo" Type="int" Nullable="false" />
+          <Property Name="editorial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="año" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="autor" Type="int" Nullable="false" />
+          <Property Name="copia" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_PRESTAMO">
+          <Key>
+            <PropertyRef Name="idPrestamo" />
+          </Key>
+          <Property Name="idPrestamo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="inicio" Type="date" Nullable="false" />
+          <Property Name="fin" Type="date" Nullable="false" />
+          <Property Name="lector" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="T_TIPO">
+          <Key>
+            <PropertyRef Name="idTipo" />
+          </Key>
+          <Property Name="idTipo" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_T_COPIA_T_ESTADO">
+          <End Role="T_ESTADO" Type="Self.T_ESTADO" Multiplicity="1" />
+          <End Role="T_COPIA" Type="Self.T_COPIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_ESTADO">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="T_COPIA">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_COPIA_T_PRESTAMO">
+          <End Role="T_PRESTAMO" Type="Self.T_PRESTAMO" Multiplicity="1" />
+          <End Role="T_COPIA" Type="Self.T_COPIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_PRESTAMO">
+              <PropertyRef Name="idPrestamo" />
+            </Principal>
+            <Dependent Role="T_COPIA">
+              <PropertyRef Name="prestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_LIBRO_T_AUTOR">
+          <End Role="T_AUTOR" Type="Self.T_AUTOR" Multiplicity="1" />
+          <End Role="T_LIBRO" Type="Self.T_LIBRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_AUTOR">
+              <PropertyRef Name="idAutor" />
+            </Principal>
+            <Dependent Role="T_LIBRO">
+              <PropertyRef Name="autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_LIBRO_T_COPIA">
+          <End Role="T_COPIA" Type="Self.T_COPIA" Multiplicity="1" />
+          <End Role="T_LIBRO" Type="Self.T_LIBRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_COPIA">
+              <PropertyRef Name="idCopia" />
+            </Principal>
+            <Dependent Role="T_LIBRO">
+              <PropertyRef Name="copia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_LIBRO_T_TIPO">
+          <End Role="T_TIPO" Type="Self.T_TIPO" Multiplicity="1" />
+          <End Role="T_LIBRO" Type="Self.T_LIBRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_TIPO">
+              <PropertyRef Name="idTipo" />
+            </Principal>
+            <Dependent Role="T_LIBRO">
+              <PropertyRef Name="tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_PRESTAMO_T_LECTOR">
+          <End Role="T_LECTOR" Type="Self.T_LECTOR" Multiplicity="1" />
+          <End Role="T_PRESTAMO" Type="Self.T_PRESTAMO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_LECTOR">
+              <PropertyRef Name="idLector" />
+            </Principal>
+            <Dependent Role="T_PRESTAMO">
+              <PropertyRef Name="lector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bibliotecadbModelStoreContainer">
+          <EntitySet Name="T_AUTOR" EntityType="Self.T_AUTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_COPIA" EntityType="Self.T_COPIA" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_ESTADO" EntityType="Self.T_ESTADO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_LECTOR" EntityType="Self.T_LECTOR" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_LIBRO" EntityType="Self.T_LIBRO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_PRESTAMO" EntityType="Self.T_PRESTAMO" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="T_TIPO" EntityType="Self.T_TIPO" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_T_COPIA_T_ESTADO" Association="Self.FK_T_COPIA_T_ESTADO">
+            <End Role="T_ESTADO" EntitySet="T_ESTADO" />
+            <End Role="T_COPIA" EntitySet="T_COPIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_COPIA_T_PRESTAMO" Association="Self.FK_T_COPIA_T_PRESTAMO">
+            <End Role="T_PRESTAMO" EntitySet="T_PRESTAMO" />
+            <End Role="T_COPIA" EntitySet="T_COPIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_LIBRO_T_AUTOR" Association="Self.FK_T_LIBRO_T_AUTOR">
+            <End Role="T_AUTOR" EntitySet="T_AUTOR" />
+            <End Role="T_LIBRO" EntitySet="T_LIBRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_LIBRO_T_COPIA" Association="Self.FK_T_LIBRO_T_COPIA">
+            <End Role="T_COPIA" EntitySet="T_COPIA" />
+            <End Role="T_LIBRO" EntitySet="T_LIBRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_LIBRO_T_TIPO" Association="Self.FK_T_LIBRO_T_TIPO">
+            <End Role="T_TIPO" EntitySet="T_TIPO" />
+            <End Role="T_LIBRO" EntitySet="T_LIBRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_PRESTAMO_T_LECTOR" Association="Self.FK_T_PRESTAMO_T_LECTOR">
+            <End Role="T_LECTOR" EntitySet="T_LECTOR" />
+            <End Role="T_PRESTAMO" EntitySet="T_PRESTAMO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="bibliotecadbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="T_AUTOR">
+          <Key>
+            <PropertyRef Name="idAutor" />
+          </Key>
+          <Property Name="idAutor" Type="Int32" Nullable="false" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="T_LIBRO" Relationship="Self.FK_T_LIBRO_T_AUTOR" FromRole="T_AUTOR" ToRole="T_LIBRO" />
+        </EntityType>
+        <EntityType Name="T_COPIA">
+          <Key>
+            <PropertyRef Name="idCopia" />
+          </Key>
+          <Property Name="idCopia" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estado" Type="Int32" Nullable="false" />
+          <Property Name="prestamo" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="T_ESTADO" Relationship="Self.FK_T_COPIA_T_ESTADO" FromRole="T_COPIA" ToRole="T_ESTADO" />
+          <NavigationProperty Name="T_PRESTAMO" Relationship="Self.FK_T_COPIA_T_PRESTAMO" FromRole="T_COPIA" ToRole="T_PRESTAMO" />
+          <NavigationProperty Name="T_LIBRO" Relationship="Self.FK_T_LIBRO_T_COPIA" FromRole="T_COPIA" ToRole="T_LIBRO" />
+        </EntityType>
+        <EntityType Name="T_ESTADO">
+          <Key>
+            <PropertyRef Name="idEstado" />
+          </Key>
+          <Property Name="idEstado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="estadoCopia" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="T_COPIA" Relationship="Self.FK_T_COPIA_T_ESTADO" FromRole="T_ESTADO" ToRole="T_COPIA" />
+        </EntityType>
+        <EntityType Name="T_LECTOR">
+          <Key>
+            <PropertyRef Name="idLector" />
+          </Key>
+          <Property Name="idLector" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="telefono" Type="Decimal" Precision="18" Scale="0" Nullable="false" />
+          <Property Name="direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="T_PRESTAMO" Relationship="Self.FK_T_PRESTAMO_T_LECTOR" FromRole="T_LECTOR" ToRole="T_PRESTAMO" />
+        </EntityType>
+        <EntityType Name="T_LIBRO">
+          <Key>
+            <PropertyRef Name="id_libro" />
+          </Key>
+          <Property Name="id_libro" Type="Int32" Nullable="false" />
+          <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="tipo" Type="Int32" Nullable="false" />
+          <Property Name="editorial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="año" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="autor" Type="Int32" Nullable="false" />
+          <Property Name="copia" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="T_AUTOR" Relationship="Self.FK_T_LIBRO_T_AUTOR" FromRole="T_LIBRO" ToRole="T_AUTOR" />
+          <NavigationProperty Name="T_COPIA" Relationship="Self.FK_T_LIBRO_T_COPIA" FromRole="T_LIBRO" ToRole="T_COPIA" />
+          <NavigationProperty Name="T_TIPO" Relationship="Self.FK_T_LIBRO_T_TIPO" FromRole="T_LIBRO" ToRole="T_TIPO" />
+        </EntityType>
+        <EntityType Name="T_PRESTAMO">
+          <Key>
+            <PropertyRef Name="idPrestamo" />
+          </Key>
+          <Property Name="idPrestamo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="inicio" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="fin" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="lector" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="T_COPIA" Relationship="Self.FK_T_COPIA_T_PRESTAMO" FromRole="T_PRESTAMO" ToRole="T_COPIA" />
+          <NavigationProperty Name="T_LECTOR" Relationship="Self.FK_T_PRESTAMO_T_LECTOR" FromRole="T_PRESTAMO" ToRole="T_LECTOR" />
+        </EntityType>
+        <EntityType Name="T_TIPO">
+          <Key>
+            <PropertyRef Name="idTipo" />
+          </Key>
+          <Property Name="idTipo" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="T_LIBRO" Relationship="Self.FK_T_LIBRO_T_TIPO" FromRole="T_TIPO" ToRole="T_LIBRO" />
+        </EntityType>
+        <Association Name="FK_T_LIBRO_T_AUTOR">
+          <End Role="T_AUTOR" Type="Self.T_AUTOR" Multiplicity="1" />
+          <End Role="T_LIBRO" Type="Self.T_LIBRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_AUTOR">
+              <PropertyRef Name="idAutor" />
+            </Principal>
+            <Dependent Role="T_LIBRO">
+              <PropertyRef Name="autor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_COPIA_T_ESTADO">
+          <End Role="T_ESTADO" Type="Self.T_ESTADO" Multiplicity="1" />
+          <End Role="T_COPIA" Type="Self.T_COPIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_ESTADO">
+              <PropertyRef Name="idEstado" />
+            </Principal>
+            <Dependent Role="T_COPIA">
+              <PropertyRef Name="estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_COPIA_T_PRESTAMO">
+          <End Role="T_PRESTAMO" Type="Self.T_PRESTAMO" Multiplicity="1" />
+          <End Role="T_COPIA" Type="Self.T_COPIA" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_PRESTAMO">
+              <PropertyRef Name="idPrestamo" />
+            </Principal>
+            <Dependent Role="T_COPIA">
+              <PropertyRef Name="prestamo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_LIBRO_T_COPIA">
+          <End Role="T_COPIA" Type="Self.T_COPIA" Multiplicity="1" />
+          <End Role="T_LIBRO" Type="Self.T_LIBRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_COPIA">
+              <PropertyRef Name="idCopia" />
+            </Principal>
+            <Dependent Role="T_LIBRO">
+              <PropertyRef Name="copia" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_PRESTAMO_T_LECTOR">
+          <End Role="T_LECTOR" Type="Self.T_LECTOR" Multiplicity="1" />
+          <End Role="T_PRESTAMO" Type="Self.T_PRESTAMO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_LECTOR">
+              <PropertyRef Name="idLector" />
+            </Principal>
+            <Dependent Role="T_PRESTAMO">
+              <PropertyRef Name="lector" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_T_LIBRO_T_TIPO">
+          <End Role="T_TIPO" Type="Self.T_TIPO" Multiplicity="1" />
+          <End Role="T_LIBRO" Type="Self.T_LIBRO" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="T_TIPO">
+              <PropertyRef Name="idTipo" />
+            </Principal>
+            <Dependent Role="T_LIBRO">
+              <PropertyRef Name="tipo" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="bibliotecadbEntitiesModel" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="T_AUTOR" EntityType="Self.T_AUTOR" />
+          <EntitySet Name="T_COPIA" EntityType="Self.T_COPIA" />
+          <EntitySet Name="T_ESTADO" EntityType="Self.T_ESTADO" />
+          <EntitySet Name="T_LECTOR" EntityType="Self.T_LECTOR" />
+          <EntitySet Name="T_LIBRO" EntityType="Self.T_LIBRO" />
+          <EntitySet Name="T_PRESTAMO" EntityType="Self.T_PRESTAMO" />
+          <EntitySet Name="T_TIPO" EntityType="Self.T_TIPO" />
+          <AssociationSet Name="FK_T_LIBRO_T_AUTOR" Association="Self.FK_T_LIBRO_T_AUTOR">
+            <End Role="T_AUTOR" EntitySet="T_AUTOR" />
+            <End Role="T_LIBRO" EntitySet="T_LIBRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_COPIA_T_ESTADO" Association="Self.FK_T_COPIA_T_ESTADO">
+            <End Role="T_ESTADO" EntitySet="T_ESTADO" />
+            <End Role="T_COPIA" EntitySet="T_COPIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_COPIA_T_PRESTAMO" Association="Self.FK_T_COPIA_T_PRESTAMO">
+            <End Role="T_PRESTAMO" EntitySet="T_PRESTAMO" />
+            <End Role="T_COPIA" EntitySet="T_COPIA" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_LIBRO_T_COPIA" Association="Self.FK_T_LIBRO_T_COPIA">
+            <End Role="T_COPIA" EntitySet="T_COPIA" />
+            <End Role="T_LIBRO" EntitySet="T_LIBRO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_PRESTAMO_T_LECTOR" Association="Self.FK_T_PRESTAMO_T_LECTOR">
+            <End Role="T_LECTOR" EntitySet="T_LECTOR" />
+            <End Role="T_PRESTAMO" EntitySet="T_PRESTAMO" />
+          </AssociationSet>
+          <AssociationSet Name="FK_T_LIBRO_T_TIPO" Association="Self.FK_T_LIBRO_T_TIPO">
+            <End Role="T_TIPO" EntitySet="T_TIPO" />
+            <End Role="T_LIBRO" EntitySet="T_LIBRO" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="bibliotecadbModelStoreContainer" CdmEntityContainer="bibliotecadbEntitiesModel">
+          <EntitySetMapping Name="T_AUTOR">
+            <EntityTypeMapping TypeName="bibliotecadbModel.T_AUTOR">
+              <MappingFragment StoreEntitySet="T_AUTOR">
+                <ScalarProperty Name="idAutor" ColumnName="idAutor" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="nacionalidad" ColumnName="nacionalidad" />
+                <ScalarProperty Name="fechaNacimiento" ColumnName="fechaNacimiento" />
+                <ScalarProperty Name="descripcion" ColumnName="descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_COPIA">
+            <EntityTypeMapping TypeName="bibliotecadbModel.T_COPIA">
+              <MappingFragment StoreEntitySet="T_COPIA">
+                <ScalarProperty Name="idCopia" ColumnName="idCopia" />
+                <ScalarProperty Name="estado" ColumnName="estado" />
+                <ScalarProperty Name="prestamo" ColumnName="prestamo" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_ESTADO">
+            <EntityTypeMapping TypeName="bibliotecadbModel.T_ESTADO">
+              <MappingFragment StoreEntitySet="T_ESTADO">
+                <ScalarProperty Name="idEstado" ColumnName="idEstado" />
+                <ScalarProperty Name="estadoCopia" ColumnName="estadoCopia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_LECTOR">
+            <EntityTypeMapping TypeName="bibliotecadbModel.T_LECTOR">
+              <MappingFragment StoreEntitySet="T_LECTOR">
+                <ScalarProperty Name="idLector" ColumnName="idLector" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+                <ScalarProperty Name="telefono" ColumnName="telefono" />
+                <ScalarProperty Name="direccion" ColumnName="direccion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_LIBRO">
+            <EntityTypeMapping TypeName="bibliotecadbModel.T_LIBRO">
+              <MappingFragment StoreEntitySet="T_LIBRO">
+                <ScalarProperty Name="id_libro" ColumnName="id_libro" />
+                <ScalarProperty Name="titulo" ColumnName="titulo" />
+                <ScalarProperty Name="tipo" ColumnName="tipo" />
+                <ScalarProperty Name="editorial" ColumnName="editorial" />
+                <ScalarProperty Name="año" ColumnName="año" />
+                <ScalarProperty Name="autor" ColumnName="autor" />
+                <ScalarProperty Name="copia" ColumnName="copia" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_PRESTAMO">
+            <EntityTypeMapping TypeName="bibliotecadbModel.T_PRESTAMO">
+              <MappingFragment StoreEntitySet="T_PRESTAMO">
+                <ScalarProperty Name="idPrestamo" ColumnName="idPrestamo" />
+                <ScalarProperty Name="inicio" ColumnName="inicio" />
+                <ScalarProperty Name="fin" ColumnName="fin" />
+                <ScalarProperty Name="lector" ColumnName="lector" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="T_TIPO">
+            <EntityTypeMapping TypeName="bibliotecadbModel.T_TIPO">
+              <MappingFragment StoreEntitySet="T_TIPO">
+                <ScalarProperty Name="idTipo" ColumnName="idTipo" />
+                <ScalarProperty Name="nombre" ColumnName="nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Ninguno" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

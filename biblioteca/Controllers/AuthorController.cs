@@ -6,24 +6,25 @@ using System.Web.Mvc;
 
 namespace biblioteca.Controllers
 {
-    public class HomeController : Controller
+    public class AuthorController : Controller
     {
-        public ActionResult Index()
+        public ActionResult CreateAuthor()
         {
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult UpdateAuthor()
         {
-            ViewBag.Message = "Your application description page.";
-
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult ReadAuthor()
         {
-            ViewBag.Message = "Manuel Zárate - Mis datos de Contacto";
+            return View();
+        }
 
+        public ActionResult DeleteAuthor()
+        {
             return View();
         }
     }
