@@ -12,14 +12,14 @@ namespace biblioteca.Controllers
         public ActionResult CreateBook()
         {
             List<TipoViewModels> lst = null;
-            using (Models.bibliotecadbEntitiesModel db = new Models.bibliotecadbEntitiesModel())
+            using (Models.bibliotecadbEntities db = new Models.bibliotecadbEntities())
             {
-                lst = ( from d in db.T_TIPO
-                      select new TipoViewModels
-                      {
-                        Id = d.idTipo,
-                        Nombre = d.nombre
-                      }).ToList();
+                lst = (from d in db.T_TIPO
+                       select new TipoViewModels
+                       {
+                           Id = d.idTipo,
+                           Nombre = d.nombre
+                       }).ToList();
             }
 
             List<SelectListItem> items = lst.ConvertAll(d =>
@@ -37,14 +37,14 @@ namespace biblioteca.Controllers
             ViewBag.items = items;
 
             List<AutoresViewModel> lstAutores = null;
-            using (Models.bibliotecadbEntitiesModel db = new Models.bibliotecadbEntitiesModel())
+            using (Models.bibliotecadbEntities db = new Models.bibliotecadbEntities())
             {
                 lstAutores = (from d in db.T_AUTOR
-                       select new AutoresViewModel
-                       {
-                           Id = d.idAutor,
-                           Nombre = d.nombre
-                       }).ToList();
+                              select new AutoresViewModel
+                              {
+                                  Id = d.idAutor,
+                                  Nombre = d.nombre
+                              }).ToList();
             }
 
             List<SelectListItem> itemsAutores = lstAutores.ConvertAll(d =>
@@ -65,7 +65,33 @@ namespace biblioteca.Controllers
             return View();
         }
 
-        public ActionResult UpdateBook()
+        [HttpPost]
+        public ActionResult Save(CreateBookViewModel model)
+        {
+            try
+            {
+                using (Models.bibliotecadbEntities db = new Models.bibliotecadbEntities())
+                {
+                    var oBook = new Models.T_LIBRO();
+                    oBook.titulo = model.Titulo;
+                    oBook.tipo = model.Tipo;
+                    oBook.editorial = model.Editorial;
+                    oBook.año = model.Anio;
+                    oBook.autor = model.Autor;
+                    db.T_LIBRO.Add(oBook);
+                    db.SaveChanges();
+                    
+                }
+                return Redirect("CreateBook/"); 
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+
+        }
+
+            public ActionResult UpdateBook()
         {
             return View();
         }

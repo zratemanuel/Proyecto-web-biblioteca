@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="9c61d7ca30d34ee281c54018803f76ff" Name="Diagram1">
+        <EntityTypeShape EntityType="bibliotecadbModel.T_AUTOR" Width="1.5" PointX="5.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotecadbModel.T_COPIA" Width="1.5" PointX="5.25" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotecadbModel.T_ESTADO" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotecadbModel.T_LECTOR" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotecadbModel.T_LIBRO" Width="1.5" PointX="8" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotecadbModel.T_PRESTAMO" Width="1.5" PointX="3" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="bibliotecadbModel.T_TIPO" Width="1.5" PointX="5.75" PointY="8.375" IsExpanded="true" />
+        <AssociationConnector Association="bibliotecadbModel.FK_T_LIBRO_T_AUTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotecadbModel.FK_T_COPIA_T_ESTADO" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotecadbModel.FK_T_COPIA_T_PRESTAMO" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotecadbModel.FK_T_PRESTAMO_T_LECTOR" ManuallyRouted="false" />
+        <AssociationConnector Association="bibliotecadbModel.FK_T_LIBRO_T_TIPO" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -18,12 +18,10 @@ namespace biblioteca.Models
         public string titulo { get; set; }
         public int tipo { get; set; }
         public string editorial { get; set; }
-        public string año { get; set; }
+        public int año { get; set; }
         public int autor { get; set; }
-        public int copia { get; set; }
     
         public virtual T_AUTOR T_AUTOR { get; set; }
-        public virtual T_COPIA T_COPIA { get; set; }
         public virtual T_TIPO T_TIPO { get; set; }
     }
 }

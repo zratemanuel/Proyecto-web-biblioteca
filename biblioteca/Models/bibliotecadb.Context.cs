@@ -13,10 +13,10 @@ namespace biblioteca.Models
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     
-    public partial class bibliotecadbEntitiesModel : DbContext
+    public partial class bibliotecadbEntities : DbContext
     {
-        public bibliotecadbEntitiesModel()
-            : base("name=bibliotecadbEntitiesModel")
+        public bibliotecadbEntities()
+            : base("name=bibliotecadbEntities")
         {
         }
     

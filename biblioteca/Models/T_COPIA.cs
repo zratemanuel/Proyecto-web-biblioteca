@@ -14,19 +14,11 @@ namespace biblioteca.Models
     
     public partial class T_COPIA
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public T_COPIA()
-        {
-            this.T_LIBRO = new HashSet<T_LIBRO>();
-        }
-    
         public int idCopia { get; set; }
         public int estado { get; set; }
         public int prestamo { get; set; }
     
         public virtual T_ESTADO T_ESTADO { get; set; }
         public virtual T_PRESTAMO T_PRESTAMO { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<T_LIBRO> T_LIBRO { get; set; }
     }
 }

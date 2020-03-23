@@ -134,43 +134,44 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Models\LibraryEntities.Context.cs">
+    <Compile Include="Models\bibliotecadb.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LibraryEntities.Context.tt</DependentUpon>
+      <DependentUpon>bibliotecadb.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LibraryEntities.cs">
+    <Compile Include="Models\bibliotecadb.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LibraryEntities.tt</DependentUpon>
+      <DependentUpon>bibliotecadb.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\LibraryEntities.Designer.cs">
+    <Compile Include="Models\bibliotecadb.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>LibraryEntities.edmx</DependentUpon>
+      <DependentUpon>bibliotecadb.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\T_AUTOR.cs">
-      <DependentUpon>LibraryEntities.tt</DependentUpon>
+      <DependentUpon>bibliotecadb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\T_COPIA.cs">
-      <DependentUpon>LibraryEntities.tt</DependentUpon>
+      <DependentUpon>bibliotecadb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\T_ESTADO.cs">
-      <DependentUpon>LibraryEntities.tt</DependentUpon>
+      <DependentUpon>bibliotecadb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\T_LECTOR.cs">
-      <DependentUpon>LibraryEntities.tt</DependentUpon>
+      <DependentUpon>bibliotecadb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\T_LIBRO.cs">
-      <DependentUpon>LibraryEntities.tt</DependentUpon>
+      <DependentUpon>bibliotecadb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\T_PRESTAMO.cs">
-      <DependentUpon>LibraryEntities.tt</DependentUpon>
+      <DependentUpon>bibliotecadb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\T_TIPO.cs">
-      <DependentUpon>LibraryEntities.tt</DependentUpon>
+      <DependentUpon>bibliotecadb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\AutoresViewModel.cs" />
+    <Compile Include="Models\ViewModels\CreateBookViewModel.cs" />
     <Compile Include="Models\ViewModels\TipoViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -183,24 +184,24 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
-    <Content Include="Models\LibraryEntities.Context.tt">
+    <Content Include="Models\bibliotecadb.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LibraryEntities.edmx</DependentUpon>
-      <LastGenOutput>LibraryEntities.Context.cs</LastGenOutput>
+      <DependentUpon>bibliotecadb.edmx</DependentUpon>
+      <LastGenOutput>bibliotecadb.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="Models\LibraryEntities.tt">
+    <Content Include="Models\bibliotecadb.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>LibraryEntities.edmx</DependentUpon>
-      <LastGenOutput>LibraryEntities.cs</LastGenOutput>
+      <DependentUpon>bibliotecadb.edmx</DependentUpon>
+      <LastGenOutput>bibliotecadb.cs</LastGenOutput>
     </Content>
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <EntityDeploy Include="Models\LibraryEntities.edmx">
+    <EntityDeploy Include="Models\bibliotecadb.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>LibraryEntities.Designer.cs</LastGenOutput>
+      <LastGenOutput>bibliotecadb.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <Content Include="Models\LibraryEntities.edmx.diagram">
-      <DependentUpon>LibraryEntities.edmx</DependentUpon>
+    <Content Include="Models\bibliotecadb.edmx.diagram">
+      <DependentUpon>bibliotecadb.edmx</DependentUpon>
     </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />

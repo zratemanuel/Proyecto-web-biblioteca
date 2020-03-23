@@ -9,7 +9,7 @@
           <Key>
             <PropertyRef Name="idAutor" />
           </Key>
-          <Property Name="idAutor" Type="int" Nullable="false" />
+          <Property Name="idAutor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="nombre" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="nacionalidad" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="fechaNacimiento" Type="date" Nullable="false" />
@@ -43,13 +43,12 @@
           <Key>
             <PropertyRef Name="id_libro" />
           </Key>
-          <Property Name="id_libro" Type="int" Nullable="false" />
+          <Property Name="id_libro" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="titulo" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="tipo" Type="int" Nullable="false" />
           <Property Name="editorial" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="año" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="año" Type="int" Nullable="false" />
           <Property Name="autor" Type="int" Nullable="false" />
-          <Property Name="copia" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="T_PRESTAMO">
           <Key>
@@ -103,18 +102,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_T_LIBRO_T_COPIA">
-          <End Role="T_COPIA" Type="Self.T_COPIA" Multiplicity="1" />
-          <End Role="T_LIBRO" Type="Self.T_LIBRO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_COPIA">
-              <PropertyRef Name="idCopia" />
-            </Principal>
-            <Dependent Role="T_LIBRO">
-              <PropertyRef Name="copia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_T_LIBRO_T_TIPO">
           <End Role="T_TIPO" Type="Self.T_TIPO" Multiplicity="1" />
           <End Role="T_LIBRO" Type="Self.T_LIBRO" Multiplicity="*" />
@@ -159,10 +146,6 @@
             <End Role="T_AUTOR" EntitySet="T_AUTOR" />
             <End Role="T_LIBRO" EntitySet="T_LIBRO" />
           </AssociationSet>
-          <AssociationSet Name="FK_T_LIBRO_T_COPIA" Association="Self.FK_T_LIBRO_T_COPIA">
-            <End Role="T_COPIA" EntitySet="T_COPIA" />
-            <End Role="T_LIBRO" EntitySet="T_LIBRO" />
-          </AssociationSet>
           <AssociationSet Name="FK_T_LIBRO_T_TIPO" Association="Self.FK_T_LIBRO_T_TIPO">
             <End Role="T_TIPO" EntitySet="T_TIPO" />
             <End Role="T_LIBRO" EntitySet="T_LIBRO" />
@@ -181,7 +164,7 @@
           <Key>
             <PropertyRef Name="idAutor" />
           </Key>
-          <Property Name="idAutor" Type="Int32" Nullable="false" />
+          <Property Name="idAutor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="nombre" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="nacionalidad" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="fechaNacimiento" Type="DateTime" Nullable="false" Precision="0" />
@@ -197,7 +180,6 @@
           <Property Name="prestamo" Type="Int32" Nullable="false" />
           <NavigationProperty Name="T_ESTADO" Relationship="Self.FK_T_COPIA_T_ESTADO" FromRole="T_COPIA" ToRole="T_ESTADO" />
           <NavigationProperty Name="T_PRESTAMO" Relationship="Self.FK_T_COPIA_T_PRESTAMO" FromRole="T_COPIA" ToRole="T_PRESTAMO" />
-          <NavigationProperty Name="T_LIBRO" Relationship="Self.FK_T_LIBRO_T_COPIA" FromRole="T_COPIA" ToRole="T_LIBRO" />
         </EntityType>
         <EntityType Name="T_ESTADO">
           <Key>
@@ -221,15 +203,13 @@
           <Key>
             <PropertyRef Name="id_libro" />
           </Key>
-          <Property Name="id_libro" Type="Int32" Nullable="false" />
+          <Property Name="id_libro" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="titulo" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="tipo" Type="Int32" Nullable="false" />
           <Property Name="editorial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="año" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="año" Type="Int32" Nullable="false" />
           <Property Name="autor" Type="Int32" Nullable="false" />
-          <Property Name="copia" Type="Int32" Nullable="false" />
           <NavigationProperty Name="T_AUTOR" Relationship="Self.FK_T_LIBRO_T_AUTOR" FromRole="T_LIBRO" ToRole="T_AUTOR" />
-          <NavigationProperty Name="T_COPIA" Relationship="Self.FK_T_LIBRO_T_COPIA" FromRole="T_LIBRO" ToRole="T_COPIA" />
           <NavigationProperty Name="T_TIPO" Relationship="Self.FK_T_LIBRO_T_TIPO" FromRole="T_LIBRO" ToRole="T_TIPO" />
         </EntityType>
         <EntityType Name="T_PRESTAMO">
@@ -287,18 +267,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_T_LIBRO_T_COPIA">
-          <End Role="T_COPIA" Type="Self.T_COPIA" Multiplicity="1" />
-          <End Role="T_LIBRO" Type="Self.T_LIBRO" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="T_COPIA">
-              <PropertyRef Name="idCopia" />
-            </Principal>
-            <Dependent Role="T_LIBRO">
-              <PropertyRef Name="copia" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_T_PRESTAMO_T_LECTOR">
           <End Role="T_LECTOR" Type="Self.T_LECTOR" Multiplicity="1" />
           <End Role="T_PRESTAMO" Type="Self.T_PRESTAMO" Multiplicity="*" />
@@ -323,7 +291,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityContainer Name="bibliotecadbEntitiesModel" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="bibliotecadbEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="T_AUTOR" EntityType="Self.T_AUTOR" />
           <EntitySet Name="T_COPIA" EntityType="Self.T_COPIA" />
           <EntitySet Name="T_ESTADO" EntityType="Self.T_ESTADO" />
@@ -343,10 +311,6 @@
             <End Role="T_PRESTAMO" EntitySet="T_PRESTAMO" />
             <End Role="T_COPIA" EntitySet="T_COPIA" />
           </AssociationSet>
-          <AssociationSet Name="FK_T_LIBRO_T_COPIA" Association="Self.FK_T_LIBRO_T_COPIA">
-            <End Role="T_COPIA" EntitySet="T_COPIA" />
-            <End Role="T_LIBRO" EntitySet="T_LIBRO" />
-          </AssociationSet>
           <AssociationSet Name="FK_T_PRESTAMO_T_LECTOR" Association="Self.FK_T_PRESTAMO_T_LECTOR">
             <End Role="T_LECTOR" EntitySet="T_LECTOR" />
             <End Role="T_PRESTAMO" EntitySet="T_PRESTAMO" />
@@ -361,7 +325,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="bibliotecadbModelStoreContainer" CdmEntityContainer="bibliotecadbEntitiesModel">
+        <EntityContainerMapping StorageEntityContainer="bibliotecadbModelStoreContainer" CdmEntityContainer="bibliotecadbEntities">
           <EntitySetMapping Name="T_AUTOR">
             <EntityTypeMapping TypeName="bibliotecadbModel.T_AUTOR">
               <MappingFragment StoreEntitySet="T_AUTOR">
@@ -409,7 +373,6 @@
                 <ScalarProperty Name="editorial" ColumnName="editorial" />
                 <ScalarProperty Name="año" ColumnName="año" />
                 <ScalarProperty Name="autor" ColumnName="autor" />
-                <ScalarProperty Name="copia" ColumnName="copia" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
