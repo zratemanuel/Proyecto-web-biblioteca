@@ -87,11 +87,6 @@ namespace biblioteca.Controllers
             }
         }
 
-        public ActionResult ReadAuthor()
-        {
-            return View();
-        }
-
         [HttpGet]
         public ActionResult Delete(int Id)
         {
@@ -104,5 +99,10 @@ namespace biblioteca.Controllers
             return Redirect("~/Author/UpdateAuthor/");
         }
 
+        public ActionResult ReadAuthor()
+        {
+            Models.Common lst = new Models.Common();
+            return View(lst.ListarAutores());
+        }
     }
 }

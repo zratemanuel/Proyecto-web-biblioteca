@@ -11,6 +11,8 @@ namespace biblioteca.Models.ViewModels
         public int Id { get; set; }
         public string Nombre { get; set; }
         public string Nacionalidad { get; set; }
+
+        [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yyyy}")]
         public DateTime FechaNacimiento { get; set; }
         public string Descripcion { get; set; }
 
