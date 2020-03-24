@@ -1,7 +1,35 @@
-﻿
+﻿@model List<biblioteca.Models.ViewModels.ListBooksViewModel>
+
 @{
-    ViewBag.Title = "UpdateBook";
+    ViewBag.Title = "Modificar Libro";
 }
 
-<h2>UpdateBook</h2>
+<h2>@ViewBag.Title</h2>
+<br />
+
+<div class="row">
+    <div class="col-md-12">
+
+        <table class="table">
+            <tr>
+                <th>#</th>
+                <th>Titulo</th>
+                <th>Autor</th>
+                <th>Tipo</th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+        <tr>
+            <td>@oElemento.Id</td>
+            <td>@oElemento.Titulo</td>
+            <td>@oElemento.Autor</td>
+            <td>@oElemento.Tipo</td>
+            <td><a class="btn btn-warning" href="~/Book/Update/@oElemento.Id">Editar</a></td>
+        </tr>
+            }
+
+        </table>
+    </div>
+</div>
+
 

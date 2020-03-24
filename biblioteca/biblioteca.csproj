@@ -149,6 +149,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>bibliotecadb.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\Common.cs" />
     <Compile Include="Models\T_AUTOR.cs">
       <DependentUpon>bibliotecadb.tt</DependentUpon>
     </Compile>
@@ -171,7 +172,8 @@
       <DependentUpon>bibliotecadb.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewModels\AutoresViewModel.cs" />
-    <Compile Include="Models\ViewModels\CreateBookViewModel.cs" />
+    <Compile Include="Models\ViewModels\BookViewModel.cs" />
+    <Compile Include="Models\ViewModels\ListBooksViewModel.cs" />
     <Compile Include="Models\ViewModels\TipoViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -235,6 +237,7 @@
     <Content Include="Views\Author\UpdateAuthor.cshtml" />
     <Content Include="Views\Author\ReadAuthor.cshtml" />
     <Content Include="Views\Author\DeleteAuthor.cshtml" />
+    <Content Include="Views\Book\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,14 +1,18 @@
 ﻿@model biblioteca.Models.ViewModels.BookViewModel
 
 @{
-    ViewBag.Title = "Registrar Libro";
+    ViewBag.Title = "Editar Libro";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@{
     List<SelectListItem> items = (List<SelectListItem>)ViewBag.items;
     List<SelectListItem> itemsAutores = (List<SelectListItem>)ViewBag.itemsAutores;
 }
 
-<h2>Registrar Libro</h2>
 <br />
-@using (Html.BeginForm("Save", "Book", FormMethod.Post))
+@using (Html.BeginForm("Update", "Book", FormMethod.Post))
 {
     <div class="form-group">
         @Html.Label("Titulo del Libro")
@@ -36,8 +40,10 @@
     </div>
 
 
-    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i>  Registrar Libro</button>
+    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i>  Editar Libro</button>
 }
+
+
 
 
 
