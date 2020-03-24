@@ -112,5 +112,11 @@ namespace biblioteca.Controllers
             }
             return Redirect("~/Book/UpdateBook/");
         }
+
+        public ActionResult ReadBook()
+        {
+            Models.Common lst = new Models.Common();
+            return View(lst.ListarLibros());
+        }
     }
 }
