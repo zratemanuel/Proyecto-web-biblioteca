@@ -92,9 +92,17 @@ namespace biblioteca.Controllers
             return View();
         }
 
-        public ActionResult DeleteAuthor()
+        [HttpGet]
+        public ActionResult Delete(int Id)
         {
-            return View();
+            using (Models.bibliotecadbEntities db = new Models.bibliotecadbEntities())
+            {
+                var oAutor = db.T_AUTOR.Find(Id);
+                db.T_AUTOR.Remove(oAutor);
+                db.SaveChanges();
+            }
+            return Redirect("~/Author/UpdateAuthor/");
         }
+
     }
 }
