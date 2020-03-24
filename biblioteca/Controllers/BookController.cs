@@ -100,5 +100,17 @@ namespace biblioteca.Controllers
                 return View(model);
             }
         }
+
+        [HttpGet]
+        public ActionResult Delete(int Id)
+        {
+            using (Models.bibliotecadbEntities db = new Models.bibliotecadbEntities())
+            {
+                var oBook = db.T_LIBRO.Find(Id);
+                db.T_LIBRO.Remove(oBook);
+                db.SaveChanges();
+            }
+            return Redirect("~/Book/UpdateBook/");
+        }
     }
 }
