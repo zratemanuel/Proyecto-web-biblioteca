@@ -39,9 +39,52 @@ namespace biblioteca.Controllers
 
         }
 
+        // mZarate : Retorna vista con listado de autores con acción de Baja o Modificación
         public ActionResult UpdateAuthor()
         {
-            return View();
+            Models.Common lst = new Models.Common();
+            return View(lst.ListarAutores());
+        }
+
+        // mZarate : Update 1 - Envia conjunto de datos y actualiza en base de datos. Es invocado cuando su parámetro es un modelo
+        [HttpPost]
+        public ActionResult Update(AutoresViewModel model)
+        {
+            try
+            {
+                using (Models.bibliotecadbEntities db = new Models.bibliotecadbEntities())
+                {
+                    var oAutor = db.T_AUTOR.Find(model.Id);
+                    oAutor.nombre = model.Nombre;
+                    oAutor.nacionalidad = model.Nacionalidad;
+                    oAutor.fechaNacimiento = model.FechaNacimiento;
+                    oAutor.descripcion = model.Descripcion;
+                    db.Entry(oAutor).State = System.Data.Entity.EntityState.Modified;
+                    db.SaveChanges();
+
+                }
+                return Redirect("~/Author/UpdateAuthor/");
+            }
+            catch (Exception ex)
+            {
+                return Content(ex.Message);
+            }
+        }
+
+        // mZarate : Update 2 - Envia conjunto de datos al modelo del formulario. Es invocado cuando su parámetro es un id integer
+        public ActionResult Update(int Id)
+        {
+            AutoresViewModel model = new AutoresViewModel();
+
+            using (Models.bibliotecadbEntities db = new Models.bibliotecadbEntities())
+            {
+                var oAutor = db.T_AUTOR.Find(Id);
+                model.Nombre = oAutor.nombre;
+                model.Nacionalidad = oAutor.nacionalidad;
+                model.FechaNacimiento = oAutor.fechaNacimiento;
+                model.Descripcion = oAutor.descripcion;
+                return View(model);
+            }
         }
 
         public ActionResult ReadAuthor()

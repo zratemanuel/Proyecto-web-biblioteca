@@ -79,5 +79,23 @@ namespace biblioteca.Models
             }
             return lst;
         }
+
+        public List<AutoresViewModel> ListarAutores()
+        {
+            List<AutoresViewModel> lst = null;
+            using (Models.bibliotecadbEntities db = new Models.bibliotecadbEntities())
+            {
+                lst = (from d in db.T_AUTOR
+                       select new AutoresViewModel
+                       {
+                           Id = d.idAutor,
+                           Nombre = d.nombre,
+                           Nacionalidad = d.nacionalidad,
+                           FechaNacimiento = d.fechaNacimiento,
+                           Descripcion = d.descripcion
+                       }).ToList();
+            }
+            return lst;
+        }
     }
 }

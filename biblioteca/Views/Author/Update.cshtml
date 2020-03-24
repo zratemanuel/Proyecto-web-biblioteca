@@ -1,11 +1,13 @@
 ﻿@model biblioteca.Models.ViewModels.AutoresViewModel
+
 @{
-    ViewBag.Title = "Registrar Autor";
+    ViewBag.Title = "Editar Autor";
 }
 
 <h2>@ViewBag.Title</h2>
+
 <br />
-@using (Html.BeginForm("Save", "Author", FormMethod.Post))
+@using (Html.BeginForm("Update", "Author", FormMethod.Post))
 {
     <div class="form-group">
         @Html.Label("Nombre")
@@ -19,7 +21,7 @@
 
     <div class="form-group">
         @Html.Label("Fecha de Nacimiento")
-        @Html.TextBoxFor(d => d.FechaNacimiento, "", new { @class = "form-control", @placeholder = "DD-MM-YYYY", @type = "date", @format = "dd/mm/YYYY"})
+        @Html.EditorFor(d => d.FechaNacimiento, new { htmlAttributes = new { @class = "form-control datepicker" } })
     </div>
 
 
@@ -28,8 +30,12 @@
         @Html.TextAreaFor(d => d.Descripcion, new { @class = "form-control" })
     </div>
 
-    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i>  Registrar Autor</button>
+    <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i>  Editar Autor</button>
 }
+
+
+
+
 
 
 
