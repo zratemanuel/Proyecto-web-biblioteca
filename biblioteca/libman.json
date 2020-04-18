@@ -1,0 +1,30 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "jqueryui@1.12.1",
+      "destination": "Scripts/jqueryui/"
+    },
+    {
+      "library": "bootstrap-datetimepicker@4.17.47",
+      "destination": "Scripts/bootstrap-datetimepicker/"
+    },
+    {
+      "library": "moment.js@2.24.0",
+      "destination": "Scripts/moment.js/"
+    },
+    {
+      "library": "jquery.maskedinput@1.4.1",
+      "destination": "Scripts/jquery.maskedinput/"
+    },
+    {
+      "library": "bootstrap-datepicker@1.9.0",
+      "destination": "Scripts/bootstrap-datepicker/"
+    },
+    {
+      "library": "mdbootstrap@4.16.0",
+      "destination": "Scripts/mdbootstrap/"
+    }
+  ]
+}

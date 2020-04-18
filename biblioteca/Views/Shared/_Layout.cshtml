@@ -8,11 +8,19 @@
     <link rel="icon"
           type="image/png"
           href="https://image.flaticon.com/icons/png/512/8/8133.png">
+
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @Styles.Render("~/bundles/jqueryuicss")
+    @Styles.Render("~/bundles/datetimepickercss")
     @Scripts.Render("~/bundles/jquery")
-    @Scripts.Render("~/bundles/jquerymin")
     @Scripts.Render("~/bundles/jquerymasked")
+    @Scripts.Render("~/bundles/jqueryuimin")
+    @Scripts.Render("~/bundles/modernizr")
+
+    @Scripts.Render("~/bundles/momentjs")
+    @Scripts.Render("~/bundles/datetimepicker")
+    @Scripts.Render("~/bundles/datepickeres")
+
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -59,7 +67,6 @@
             <p>&copy; @DateTime.Now.Year - Sistema de Biblioteca</p>
         </footer>
     </div>
-
     @Scripts.Render("~/bundles/bootstrap")
     @RenderSection("scripts", required: false)
 </body>
