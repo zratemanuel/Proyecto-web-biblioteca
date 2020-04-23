@@ -8,7 +8,7 @@
 
 <h2>Registrar Libro</h2>
 <br />
-@using (Html.BeginForm("Save", "Book", FormMethod.Post))
+@using (Html.BeginForm("Save", "Book", FormMethod.Post, new { id = "createBookForm" }))
 {
     <div class="form-group">
         @Html.Label("Titulo del Libro")
@@ -38,6 +38,8 @@
 
     <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i>  Registrar Libro</button>
 }
+
+<script language="javascript" src="~/Scripts/library-js/Book/createBook.js"></script>
 
 
 

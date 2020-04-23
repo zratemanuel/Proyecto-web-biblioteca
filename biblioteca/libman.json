@@ -25,6 +25,10 @@
     {
       "library": "mdbootstrap@4.16.0",
       "destination": "Scripts/mdbootstrap/"
+    },
+    {
+      "library": "jquery-validate@1.19.1",
+      "destination": "Scripts/jquery-validate/"
     }
   ]
 }

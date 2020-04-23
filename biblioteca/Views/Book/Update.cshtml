@@ -12,7 +12,7 @@
 }
 
 <br />
-@using (Html.BeginForm("Update", "Book", FormMethod.Post))
+@using (Html.BeginForm("Update", "Book", FormMethod.Post, new { id = "updateBookForm" }))
 {
     <div class="form-group">
         @Html.Label("Titulo del Libro")
@@ -42,6 +42,8 @@
 
     <button type="submit" class="btn btn-primary"><i class="glyphicon glyphicon-floppy-save"></i>  Editar Libro</button>
 }
+
+<script language="javascript" src="~/Scripts/library-js/Book/updateBook.js"></script>
 
 
 

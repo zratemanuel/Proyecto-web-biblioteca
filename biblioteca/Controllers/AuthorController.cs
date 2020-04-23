@@ -17,27 +17,30 @@ namespace biblioteca.Controllers
         [HttpPost]
         public ActionResult Save(AutoresViewModel model)
         {
-            try
-            {
-                using (Models.bibliotecadbEntities db = new Models.bibliotecadbEntities())
+                try
                 {
-                    var oAutor = new Models.T_AUTOR();
-                    oAutor.nombre = model.Nombre;
-                    oAutor.nacionalidad= model.Nacionalidad;
-                    oAutor.fechaNacimiento = model.FechaNacimiento;
-                    oAutor.descripcion = model.Descripcion;
-                    db.T_AUTOR.Add(oAutor);
-                    db.SaveChanges();
-
-                }
+                    if (ModelState.IsValid)
+                    {
+                        using (Models.bibliotecadbEntities db = new Models.bibliotecadbEntities())
+                        {
+                            var oAutor = new Models.T_AUTOR();
+                            oAutor.nombre = model.Nombre;
+                            oAutor.nacionalidad = model.Nacionalidad;
+                            oAutor.fechaNacimiento = model.FechaNacimiento;
+                            oAutor.descripcion = model.Descripcion;
+                            db.T_AUTOR.Add(oAutor);
+                            db.SaveChanges();
+                        }
+                    }
                 return Redirect("CreateAuthor/");
-            }
-            catch (Exception ex)
-            {
-                return Content(ex.Message);
+                }
+                catch (Exception ex)
+                {
+                    return Content(ex.Message);
+                }
+
             }
 
-        }
 
         // mZarate : Retorna vista con listado de autores con acción de Baja o Modificación
         public ActionResult UpdateAuthor()

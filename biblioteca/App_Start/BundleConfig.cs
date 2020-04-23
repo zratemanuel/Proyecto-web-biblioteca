@@ -43,9 +43,12 @@ namespace biblioteca
             bundles.Add(new ScriptBundle("~/bundles/momentjs").Include(
                      "~/Scripts/moment.js/moment.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/jqueryval").Include(
+               "~/Scripts/jquery-validate/jquery.validate.min.js"));
+
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/Site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquerymasked").Include(
                "~/Scripts/jquery.maskedinput/jquery.maskedinput.min.js"));

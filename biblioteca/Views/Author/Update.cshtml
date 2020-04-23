@@ -7,7 +7,7 @@
 <h2>@ViewBag.Title</h2>
 
 <br />
-@using (Html.BeginForm("Update", "Author", FormMethod.Post))
+@using (Html.BeginForm("Update", "Author", FormMethod.Post, new { id = "updateAuthorForm" }))
 {
     <div class="form-group">
         @Html.Label("Nombre")
@@ -36,9 +36,6 @@
         </div>
     </div>
 
-
-
-
     <div class="form-group">
         @Html.Label("Descripción")
         @Html.TextAreaFor(d => d.Descripcion, new { @class = "form-control" })
@@ -49,6 +46,7 @@
 }
 
 <script language="javascript" src="~/Scripts/library-js/controls.js"></script>
+<script language="javascript" src="~/Scripts/library-js/Author/updateAuthor.js"></script>
 
 
 

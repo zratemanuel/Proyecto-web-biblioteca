@@ -10,6 +10,7 @@ namespace biblioteca.Models.ViewModels
     {
         public int Id { get; set; }
         public string Nombre { get; set; }
+
         public string Nacionalidad { get; set; }
 
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:dd/MM/yyyy}")]
