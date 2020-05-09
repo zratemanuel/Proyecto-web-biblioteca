@@ -13,10 +13,10 @@
 
 $(document).ready(function () {
 
-document.onreadystatechange = function () {
-    if (document.readyState == "complete") {
-        $(".loader-page").css({ visibility: "hidden", opacity: "0" })
-    }
- };
+    document.onreadystatechange = function () {
+        if (document.readyState == "complete") {
+            $(".loader-page").css({ visibility: "hidden", opacity: "0" })
+        }
+     };
 
 });
