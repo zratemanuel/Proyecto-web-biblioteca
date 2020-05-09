@@ -868,6 +868,7 @@
     <Content Include="Scripts\library-js\Book\createBook.js" />
     <Content Include="Scripts\library-js\Author\updateAuthor.js" />
     <Content Include="Scripts\library-js\Book\updateBook.js" />
+    <Content Include="Scripts\library-js\Home\main.js" />
     <Content Include="Scripts\mdbootstrap\css\mdb.css" />
     <Content Include="Scripts\mdbootstrap\css\mdb.lite.css" />
     <Content Include="Scripts\mdbootstrap\css\mdb.lite.min.css" />
